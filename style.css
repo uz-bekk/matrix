@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Fira+Code:wght@300;400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', 'Fira Code', monospace;
+    background: #000;
+    color: #00ff00;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Matrix Rain Canvas */
+#matrix-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Main Profile Container */
+.profile-container {
+    position: relative;
+    z-index: 10;
+    width: 90%;
+    max-width: 450px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    box-shadow:
+        0 0 25px rgba(0, 255, 0, 0.2),
+        inset 0 0 25px rgba(0, 255, 0, 0.05);
+    text-align: center;
+    animation: fadeInGlow 2s ease-in-out;
+}
+
+@keyframes fadeInGlow {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+        box-shadow: 0 0 0 rgba(0, 255, 0, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow:
+            0 0 50px rgba(0, 255, 0, 0.2),
+            inset 0 0 50px rgba(0, 255, 0, 0.05);
+    }
+}
+
+/* Profile Avatar */
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(45deg, #001100, #003300, #001100);
+    border: 3px solid #00ff00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #00ff00;
+    text-shadow: 0 0 20px #00ff00;
+    box-shadow:
+        0 0 30px rgba(0, 255, 0, 0.4),
+        inset 0 0 30px rgba(0, 255, 0, 0.1);
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow:
+            0 0 30px rgba(0, 255, 0, 0.4),
+            inset 0 0 30px rgba(0, 255, 0, 0.1);
+    }
+    50% {
+        box-shadow:
+            0 0 50px rgba(0, 255, 0, 0.6),
+            inset 0 0 50px rgba(0, 255, 0, 0.2);
+    }
+}
+
+/* Profile Name */
+.profile-name {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    letter-spacing: 2px;
+}
+
+/* Profile Tagline */
+.profile-tagline {
+    font-size: 1rem;
+    color: #00ff00;
+    margin-bottom: 2rem;
+    font-family: 'Fira Code', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+/* Social Links Container */
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: left;
+}
+
+/* Individual Social Link */
+.matrix-link {
+    display: block;
+    padding: 1rem 1.5rem;
+    background: rgba(0, 255, 0, 0.05);
+    border: 2px solid rgba(0, 255, 0, 0.3);
+    border-radius: 33px;
+    color: #00ff00;
+    text-decoration: none;
+    font-family: 'Fira Code', monospace;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.matrix-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.matrix-link:hover {
+    background: rgba(0, 255, 0, 0.1);
+    border-color: #00ff00;
+    color: #ffffff;
+    text-shadow: 0 0 10px #00ff00;
+    box-shadow:
+        0 0 20px rgba(0, 255, 0, 0.4),
+        inset 0 0 20px rgba(0, 255, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.matrix-link svg {
+    width: 25px;
+    height: auto;
+}
+
+.matrix-link:hover::before {
+    left: 100%;
+}
+
+/* Terminal Cursor Effect */
+.cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background: #00ff00;
+    margin-left: 5px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .profile-container {
+        width: 95%;
+        padding: 2rem 1.5rem;
+    }
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+        font-size: 2.5rem;
+    }
+    .profile-name {
+        font-size: 1.8rem;
+    }
+    .profile-tagline {
+        font-size: 0.9rem;
+    }
+    .matrix-link {
+        padding: 0.875rem 1.25rem;
+        font-size: 0.9rem;
+    }
+}
+
+.container {
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+.container svg {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: normal;
+    font: 7em 'Orbitron';
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin: 0 auto;
+}
+
+.text-copy {
+    fill: transparent;
+    stroke: white;
+    stroke-dasharray: 6% 29%;
+    stroke-width: 3px;
+    stroke-dashoffset: 0%;
+    animation: stroke-offset 5.5s infinite linear;
+}
+.text-copy:nth-child(1) { stroke: #2efb00; animation-delay: -1s; }
+.text-copy:nth-child(2) { stroke: #55ff00; animation-delay: -2s; }
+.text-copy:nth-child(3) { stroke: #14681c; animation-delay: -3s; }
+.text-copy:nth-child(4) { stroke: #07d4cd; animation-delay: -4s; }
+.text-copy:nth-child(5) { stroke: #49c700; animation-delay: -5s; }
+
+@keyframes stroke-offset {
+    100% { stroke-dashoffset: -35%; }
+}
+
+/* Ripple animation for links */
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
